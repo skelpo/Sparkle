@@ -7,6 +7,7 @@
 //  Adapted from Sparkle+, by Tom Harrington.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUSystemProfiler.h"
 #import "SUHost.h"
 #import "SUOperatingSystem.h"

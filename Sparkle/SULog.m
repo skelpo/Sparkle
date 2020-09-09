@@ -36,14 +36,18 @@ typedef struct os_log_s *os_log_t;
 void SULog(SULogLevel level, NSString *format, ...)
 {
     static aslclient client;
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101200
     static dispatch_queue_t queue;
+#endif
     static dispatch_once_t onceToken;
 
     static os_log_t logger;
     static BOOL hasOSLogging;
 
     dispatch_once(&onceToken, ^{
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101200
         NSBundle *mainBundle = [NSBundle mainBundle];
+#endif
 
         hasOSLogging = [SUOperatingSystem isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 12, 0}];
 #if __MAC_OS_X_VERSION_MAX_ALLOWED < 101200
@@ -57,7 +61,9 @@ void SULog(SULogLevel level, NSString *format, ...)
             // This creates a thread-safe object
             logger = os_log_create(subsystem, "Sparkle");
 #pragma clang diagnostic pop
-        } else {
+        }
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101200
+        else {
             uint32_t options = ASL_OPT_NO_DELAY;
             // Act the same way os_log() does; don't log to stderr if a terminal device is attached
             if (!isatty(STDERR_FILENO)) {
@@ -68,6 +74,7 @@ void SULog(SULogLevel level, NSString *format, ...)
             client = asl_open([displayName stringByAppendingString:@" [Sparkle]"].UTF8String, SPARKLE_BUNDLE_IDENTIFIER, options);
             queue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
         }
+#endif
     });
 
     if (!hasOSLogging && client == NULL) {
@@ -103,6 +110,7 @@ void SULog(SULogLevel level, NSString *format, ...)
 
     // Otherwise use ASL
     // Make sure we do not async, because if we async, the log may not be delivered deterministically
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 101200
     dispatch_sync(queue, ^{
         aslmsg message = asl_new(ASL_TYPE_MSG);
         if (message == NULL) {
@@ -129,4 +137,5 @@ void SULog(SULogLevel level, NSString *format, ...)
         
         asl_send(client, message);
     });
+#endif
 }

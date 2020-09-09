@@ -10,7 +10,6 @@
 #define SUVERSIONCOMPARISONPROTOCOL_H
 
 #import <Foundation/Foundation.h>
-#import <Sparkle/SUExport.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

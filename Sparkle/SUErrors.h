@@ -10,7 +10,6 @@
 #define SUERRORS_H
 
 #import <Foundation/Foundation.h>
-#import <Sparkle/SUExport.h>
 
 /**
  * Error domain used by Sparkle

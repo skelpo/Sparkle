@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
+#import <Sparkle/Sparkle-Swift.h>
 #import "SUSignatureVerifier.h"
 #import "SUSignatures.h"
 

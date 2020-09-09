@@ -10,6 +10,8 @@
 //	Headers:
 // -----------------------------------------------------------------------------
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
+
 #import "SUUpdateAlert.h"
 
 #import "SUHost.h"

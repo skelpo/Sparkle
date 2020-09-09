@@ -6,6 +6,8 @@
 //  Copyright 2008 Andy Matuschak. All rights reserved.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
+
 #import "SUUpdatePermissionPrompt.h"
 #import <Sparkle/SPUUpdatePermissionRequest.h>
 #import <Sparkle/SUUpdatePermissionResponse.h>

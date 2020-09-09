@@ -6,13 +6,13 @@
 //  Copyright 2008 Andy Matuschak. All rights reserved.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUPlainInstaller.h"
 #import "SUFileManager.h"
 #import "SUConstants.h"
 #import "SUHost.h"
 #import "SULog.h"
-#import <Sparkle/SUErrors.h>
-#import <Sparkle/SUVersionComparisonProtocol.h>
+#import "SUErrors.h"
 #import "SUStandardVersionComparator.h"
 
 

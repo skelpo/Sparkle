@@ -7,6 +7,7 @@
 //
 
 #import <sys/stat.h>
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUGuidedPackageInstaller.h"
 #import <Sparkle/SUErrors.h>
 

@@ -6,6 +6,7 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import <Sparkle/SUAppcastItem.h>
 #import <Sparkle/SUVersionComparisonProtocol.h>
 #import "SULog.h"

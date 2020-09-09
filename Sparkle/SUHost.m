@@ -8,6 +8,7 @@
 #import "SUHost.h"
 
 #import "SUConstants.h"
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #include <sys/mount.h> // For statfs for isRunningOnReadOnlyVolume
 #import "SULog.h"
 #import "SUSignatures.h"

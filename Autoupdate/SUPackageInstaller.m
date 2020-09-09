@@ -8,6 +8,7 @@
 
 #import "SUPackageInstaller.h"
 #import "SUConstants.h"
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import <Sparkle/SUErrors.h>
 #import "SULog.h"
 

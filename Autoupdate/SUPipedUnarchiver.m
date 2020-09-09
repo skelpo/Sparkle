@@ -6,6 +6,7 @@
 //  Copyright 2008 Andy Matuschak. All rights reserved.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUPipedUnarchiver.h"
 #import "SUUnarchiverNotifier.h"
 #import "SULog.h"

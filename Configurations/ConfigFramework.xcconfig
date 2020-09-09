@@ -15,3 +15,7 @@ PRODUCT_BUNDLE_IDENTIFIER = ${SPARKLE_BUNDLE_IDENTIFIER}
 // with Application Extensions, then we should allow frameworks that require
 // compatibility to be able to link with us.
 APPLICATION_EXTENSION_API_ONLY = YES
+
+SWIFT_OBJC_INTERFACE_HEADER_PREFIX = "${PRODUCT_MODULE_NAME}/"
+
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES

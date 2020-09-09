@@ -6,6 +6,7 @@
 //  Copyright © 2016 Sparkle Project. All rights reserved.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import <AppKit/AppKit.h>
 #import "ShowInstallerProgress.h"
 #import "SUStatusController.h"

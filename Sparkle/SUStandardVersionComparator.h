@@ -10,7 +10,6 @@
 #define SUSTANDARDVERSIONCOMPARATOR_H
 
 #import <Foundation/Foundation.h>
-#import <Sparkle/SUExport.h>
 #import <Sparkle/SUVersionComparisonProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
     It's "dumb" in that it does essentially string comparison,
     in components split by character type.
 */
-SU_EXPORT @interface SUStandardVersionComparator : NSObject <SUVersionComparison>
+@interface SUStandardVersionComparator : NSObject <SUVersionComparison>
 
 /*!
     Initializes a new instance of the standard version comparator.
