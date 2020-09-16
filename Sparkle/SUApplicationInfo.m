@@ -8,8 +8,6 @@
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUApplicationInfo.h"
-#import "SUBundleIcon.h"
-#import "SUHost.h"
 
 @implementation SUApplicationInfo
 

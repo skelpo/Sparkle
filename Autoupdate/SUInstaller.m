@@ -11,7 +11,6 @@
 #import "SUPlainInstaller.h"
 #import "SUPackageInstaller.h"
 #import "SUGuidedPackageInstaller.h"
-#import "SUHost.h"
 #import "SUConstants.h"
 #import "SULog.h"
 #import "SUErrors.h"

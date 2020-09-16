@@ -12,7 +12,6 @@
 #import <Sparkle/SPUStandardUserDriverDelegate.h>
 #import "SUAppcastItem.h"
 #import <Sparkle/SUVersionDisplayProtocol.h>
-#import "SUHost.h"
 #import "SUUpdatePermissionPrompt.h"
 #import "SUStatusController.h"
 #import "SUUpdateAlert.h"

@@ -11,7 +11,6 @@
 #import <Sparkle/SUVersionComparisonProtocol.h>
 #import "SULog.h"
 #import "SUConstants.h"
-#import "SUSignatures.h"
 #import "SPUInstallationType.h"
 
 

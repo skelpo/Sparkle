@@ -12,7 +12,6 @@
 #import "SUInstaller.h"
 #import "SUUpdateValidator.h"
 #import "SULog.h"
-#import "SUHost.h"
 #import "SULocalizations.h"
 #import "SUStandardVersionComparator.h"
 #import "SPUMessageTypes.h"

@@ -14,7 +14,6 @@
 #import "SUStandardVersionComparator.h"
 #import "SUOperatingSystem.h"
 #import <Sparkle/SPUUpdaterDelegate.h>
-#import "SUHost.h"
 #import "SUConstants.h"
 
 

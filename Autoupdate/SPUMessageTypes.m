@@ -8,7 +8,6 @@
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUMessageTypes.h"
-#import "SUHost.h"
 
 
 #include "AppKitPrevention.h"

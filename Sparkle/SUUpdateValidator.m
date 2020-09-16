@@ -11,9 +11,7 @@
 #import "SUSignatureVerifier.h"
 #import "SUCodeSigningVerifier.h"
 #import "SUInstaller.h"
-#import "SUHost.h"
 #import "SULog.h"
-#import "SUSignatures.h"
 
 #include "AppKitPrevention.h"
 

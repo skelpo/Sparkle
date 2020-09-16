@@ -8,7 +8,6 @@
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUCoreBasedUpdateDriver.h"
-#import "SUHost.h"
 #import "SPUUpdaterDelegate.h"
 #import "SPUBasicUpdateDriver.h"
 #import "SPUInstallerDriver.h"

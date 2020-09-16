@@ -10,7 +10,6 @@
 #import <Sparkle/SPUUpdater.h>
 #import "SPUUpdaterDelegate.h"
 #import "SPUUpdaterSettings.h"
-#import "SUHost.h"
 #import <Sparkle/SPUUpdatePermissionRequest.h>
 #import <Sparkle/SUUpdatePermissionResponse.h>
 #import "SPUUpdateDriver.h"
@@ -30,7 +29,6 @@
 #import "SPUUpdaterCycle.h"
 #import "SPUUpdaterTimer.h"
 #import "SPUResumableUpdate.h"
-#import "SUSignatures.h"
 
 
 #include "AppKitPrevention.h"

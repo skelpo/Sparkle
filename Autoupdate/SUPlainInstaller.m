@@ -10,7 +10,6 @@
 #import "SUPlainInstaller.h"
 #import "SUFileManager.h"
 #import "SUConstants.h"
-#import "SUHost.h"
 #import "SULog.h"
 #import "SUErrors.h"
 #import "SUStandardVersionComparator.h"

@@ -10,7 +10,6 @@
 #import "SPUUIBasedUpdateDriver.h"
 #import "SPUCoreBasedUpdateDriver.h"
 #import <Sparkle/SPUUserDriver.h>
-#import "SUHost.h"
 #import "SUConstants.h"
 #import "SPUUpdaterDelegate.h"
 #import "SUAppcastItem.h"

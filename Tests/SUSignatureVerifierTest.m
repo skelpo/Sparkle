@@ -10,7 +10,6 @@
 #import <XCTest/XCTest.h>
 #import <Sparkle/Sparkle-Swift.h>
 #import "SUSignatureVerifier.h"
-#import "SUSignatures.h"
 
 @interface SUSignatureVerifierTest : XCTestCase
 @property NSString *testFile, *pubDSAKeyFile, *pubEdKey;

@@ -10,7 +10,6 @@
 #import <AppKit/AppKit.h>
 #import "ShowInstallerProgress.h"
 #import "SUStatusController.h"
-#import "SUHost.h"
 #import "SULocalizations.h"
 
 @interface ShowInstallerProgress ()

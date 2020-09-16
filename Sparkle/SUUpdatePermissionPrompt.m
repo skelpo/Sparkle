@@ -13,7 +13,6 @@
 #import <Sparkle/SUUpdatePermissionResponse.h>
 #import "SULocalizations.h"
 
-#import "SUHost.h"
 #import "SUConstants.h"
 #import "SUApplicationInfo.h"
 #import "SUTouchBarForwardDeclarations.h"

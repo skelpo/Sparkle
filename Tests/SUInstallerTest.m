@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
-#import "SUHost.h"
 #import <Sparkle/Sparkle-Swift.h>
 #import "SUInstaller.h"
 #import "SUInstallerProtocol.h"

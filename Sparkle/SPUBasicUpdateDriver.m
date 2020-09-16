@@ -13,7 +13,6 @@
 #import <Sparkle/SUErrors.h>
 #import "SULog.h"
 #import "SULocalizations.h"
-#import "SUHost.h"
 #import "SUAppcastItem.h"
 #import "SPUProbeInstallStatus.h"
 #import "SPUInstallationInfo.h"

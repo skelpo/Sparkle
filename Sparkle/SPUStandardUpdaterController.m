@@ -9,9 +9,7 @@
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUStandardUpdaterController.h"
 #import "SPUUpdater.h"
-#import "SUHost.h"
 #import <Sparkle/SPUStandardUserDriver.h>
-#import "SUConstants.h"
 #import "SULog.h"
 
 static NSString *const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefaultsObservationContext";

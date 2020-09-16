@@ -8,7 +8,6 @@
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUStatusController.h"
-#import "SUHost.h"
 #import "SUApplicationInfo.h"
 #import "SULocalizations.h"
 #import "SUOperatingSystem.h"

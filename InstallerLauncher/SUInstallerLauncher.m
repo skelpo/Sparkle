@@ -12,10 +12,8 @@
 #import "SULog.h"
 #import "SPUMessageTypes.h"
 #import "SPUSystemAuthorization.h"
-#import "SUBundleIcon.h"
 #import "SPULocalCacheDirectory.h"
 #import "SPUInstallationType.h"
-#import "SUHost.h"
 #import <ServiceManagement/ServiceManagement.h>
 
 

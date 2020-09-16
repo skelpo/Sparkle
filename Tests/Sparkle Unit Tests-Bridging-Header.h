@@ -15,8 +15,6 @@
 #import <Sparkle/SUVersionComparisonProtocol.h>
 #import <Sparkle/SUStandardVersionComparator.h>
 #import "SUUpdateValidator.h"
-#import "SUHost.h"
-#import "SUSignatures.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

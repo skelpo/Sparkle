@@ -8,9 +8,7 @@
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import <Sparkle/SPUUpdaterSettings.h>
-#import "SUHost.h"
 #import "SUConstants.h"
-
 
 #include "AppKitPrevention.h"
 

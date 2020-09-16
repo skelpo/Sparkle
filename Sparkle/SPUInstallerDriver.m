@@ -16,7 +16,6 @@
 #import "SULog.h"
 #import "SULocalizations.h"
 #import <Sparkle/SUErrors.h>
-#import "SUHost.h"
 #import "SUFileManager.h"
 #import "SPUSecureCoding.h"
 #import "SPUInstallationInputData.h"

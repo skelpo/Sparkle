@@ -9,7 +9,6 @@
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUInstallationInputData.h"
 #import "SPUInstallationType.h"
-#import "SUSignatures.h"
 
 #include "AppKitPrevention.h"
 

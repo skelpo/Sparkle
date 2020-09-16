@@ -14,7 +14,6 @@
 #import <Sparkle/SUAppcastItem.h>
 #import "SUFileManager.h"
 #import "SULocalizations.h"
-#import "SUHost.h"
 #import "SULog.h"
 #import <Sparkle/SUErrors.h>
 #import "SPUURLRequest.h"
