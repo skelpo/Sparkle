@@ -14,7 +14,7 @@
 /**
  * Error domain used by Sparkle
  */
-SU_EXPORT extern NSString *const SUSparkleErrorDomain;
+extern NSString *const SUSparkleErrorDomain;
 
 typedef NS_ENUM(OSStatus, SUError) {
     // Configuration phase errors

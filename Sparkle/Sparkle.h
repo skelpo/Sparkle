@@ -34,5 +34,6 @@
 #import <Sparkle/SUUpdater.h> // deprecated
 #import <Sparkle/SUUpdaterDelegate.h> // deprecated
 
+#import <Sparkle/SUConstants.h> // For Swift support only
 
 #endif

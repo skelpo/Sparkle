@@ -14,7 +14,7 @@
 #import "SUHost.h"
 #import "SUConstants.h"
 #import "SULog.h"
-#import <Sparkle/SUErrors.h>
+#import "SUErrors.h"
 #import "SPUInstallationType.h"
 
 

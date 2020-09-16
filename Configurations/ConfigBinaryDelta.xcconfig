@@ -1,1 +1,2 @@
 // BinaryDelta tool only
+SWIFT_OBJC_BRIDGING_HEADER = Common-Bridging-Header.h
