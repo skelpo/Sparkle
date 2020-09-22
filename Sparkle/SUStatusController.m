@@ -6,13 +6,12 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUStatusController.h"
-#import "SUApplicationInfo.h"
 #import "SULocalizations.h"
 #import "SUOperatingSystem.h"
 #import "SUTouchBarForwardDeclarations.h"
-#import "SUTouchBarButtonGroup.h"
 
 static NSString *const SUStatusControllerTouchBarIndentifier = @"" SPARKLE_BUNDLE_IDENTIFIER ".SUStatusController";
 

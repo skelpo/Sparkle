@@ -7,16 +7,10 @@
 //
 
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
-#import <Sparkle/SPUStandardUserDriver.h>
 #import <Sparkle/SPUUserDriverCoreComponent.h>
 #import <Sparkle/SPUStandardUserDriverDelegate.h>
 #import "SUAppcastItem.h"
 #import <Sparkle/SUVersionDisplayProtocol.h>
-#import "SUUpdatePermissionPrompt.h"
-#import "SUStatusController.h"
-#import "SUUpdateAlert.h"
-#import "SULocalizations.h"
-#import "SUApplicationInfo.h"
 #import "SUOperatingSystem.h"
 
 @interface SPUStandardUserDriver ()

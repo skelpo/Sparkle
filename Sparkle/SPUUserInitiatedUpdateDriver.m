@@ -9,7 +9,6 @@
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUUserInitiatedUpdateDriver.h"
 #import "SPUUIBasedUpdateDriver.h"
-#import <Sparkle/SPUUserDriver.h>
 
 //#include "AppKitPrevention.h"
 
@@ -49,19 +48,12 @@
                 [self abortUpdateWithError:error];
             } else {
                 self.showingUserInitiatedProgress = YES;
-                
-                [self.userDriver showUserInitiatedUpdateCheckWithCompletion:^(SPUUserInitiatedCheckStatus completionStatus) {
-                    switch (completionStatus) {
-                        case SPUUserInitiatedCheckDone:
-                            break;
-                        case SPUUserInitiatedCheckCanceled:
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if (self.showingUserInitiatedProgress) {
-                                    [self abortUpdate];
-                                }
-                            });
-                            break;
-                    }
+                [self.userDriver showUserInitiatedUpdateCheckWithCancelCallback:^ {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (self.showingUserInitiatedProgress) {
+                            [self abortUpdate];
+                        }
+                    });
                 }];
                 
                 [self.uiDriver checkForUpdatesAtAppcastURL:appcastURL withUserAgent:userAgent httpHeaders:httpHeaders inBackground:NO includesSkippedUpdates:YES];

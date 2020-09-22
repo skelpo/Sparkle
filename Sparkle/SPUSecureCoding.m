@@ -16,14 +16,11 @@ static NSString *SURootObjectArchiveKey = @"SURootObjectArchive";
 
 NSData * _Nullable SPUArchiveRootObjectSecurely(id<NSSecureCoding> rootObject)
 {
-    NSMutableData *data = [NSMutableData data];
-    NSKeyedArchiver *keyedArchiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    keyedArchiver.requiresSecureCoding = YES;
+    NSKeyedArchiver *keyedArchiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
     
     @try {
         [keyedArchiver encodeObject:rootObject forKey:SURootObjectArchiveKey];
-        [keyedArchiver finishEncoding];
-        return [data copy];
+        return [keyedArchiver.encodedData copy];
     } @catch (NSException *exception) {
         SULog(SULogLevelError, @"Exception while securely archiving object: %@", exception);
         [keyedArchiver finishEncoding];
@@ -33,16 +30,19 @@ NSData * _Nullable SPUArchiveRootObjectSecurely(id<NSSecureCoding> rootObject)
 
 id<NSSecureCoding> _Nullable SPUUnarchiveRootObjectSecurely(NSData *data, Class klass)
 {
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    unarchiver.requiresSecureCoding = YES;
+    NSError *error = nil;
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&error];
+    id<NSSecureCoding> rootObject = nil;
     
-    @try {
-        id<NSSecureCoding> rootObject = [unarchiver decodeObjectOfClass:klass forKey:SURootObjectArchiveKey];
+    if (unarchiver) {
+        rootObject = [unarchiver decodeTopLevelObjectOfClass:klass forKey:SURootObjectArchiveKey error:&error];
         [unarchiver finishDecoding];
-        return rootObject;
-    } @catch (NSException *exception) {
-        SULog(SULogLevelError, @"Exception while securely unarchiving object: %@", exception);
-        [unarchiver finishDecoding];
+    }
+    
+    if (!unarchiver || !rootObject) {
+        SULog(SULogLevelError, @"Error while securely unarchiving object: %@", error);
         return nil;
     }
+    
+    return rootObject;
 }

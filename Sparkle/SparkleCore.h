@@ -24,7 +24,7 @@
 #import <Sparkle/SUErrors.h>
 #import <Sparkle/SPUUpdatePermissionRequest.h>
 #import <Sparkle/SUUpdatePermissionResponse.h>
-#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
 #import <Sparkle/SPUUserDriverCoreComponent.h>
 #import <Sparkle/SPUDownloadData.h>
 

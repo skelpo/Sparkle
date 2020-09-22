@@ -9,7 +9,6 @@
 #import <AppKit/AppKit.h>
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "ShowInstallerProgress.h"
-#import "SUStatusController.h"
 #import "SULocalizations.h"
 
 @interface ShowInstallerProgress ()

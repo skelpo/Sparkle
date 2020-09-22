@@ -9,12 +9,21 @@
 #ifndef SPUInstallationType_h
 #define SPUInstallationType_h
 
-#define SPUInstallationTypeApplication @"application" // the default installation type for ordinary application updates
-#define SPUInstallationTypeGuidedPackage @"package" // the preferred installation type for package installations
-#define SPUInstallationTypeInteractivePackage @"interactive-package" // the deprecated installation type; use guided package instead
+#import <Foundation/Foundation.h>
 
-#define SPUInstallationTypeDefault SPUInstallationTypeApplication
-#define SPUInstallationTypesArray (@[SPUInstallationTypeApplication, SPUInstallationTypeGuidedPackage, SPUInstallationTypeInteractivePackage])
+/// The default installation type for ordinary application updates.
+extern NSString * const SPUInstallationTypeApplication;
+
+/// The preferred installation type for package installations.
+extern NSString * const SPUInstallationTypeGuidedPackage;
+
+/// The deprecated installation type; use guided package instead.
+extern NSString * const SPUInstallationTypeInteractivePackage;
+
+extern NSString * const SPUInstallationTypeDefault;
+
+#define SPUInstallationTypesArray @[SPUInstallationTypeApplication, SPUInstallationTypeGuidedPackage, SPUInstallationTypeInteractivePackage]
+
 #define SPUValidInstallationType(x) ((x != nil) && [SPUInstallationTypesArray containsObject:x])
 
 #endif /* SPUInstallationType_h */

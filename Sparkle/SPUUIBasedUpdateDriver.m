@@ -9,7 +9,7 @@
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SPUUIBasedUpdateDriver.h"
 #import "SPUCoreBasedUpdateDriver.h"
-#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
 #import "SUConstants.h"
 #import "SPUUpdaterDelegate.h"
 #import "SUAppcastItem.h"
@@ -109,58 +109,64 @@
         assert(!self.resumingDownloadedUpdate);
         assert(!self.resumingInstallingUpdate);
         
-        [self.userDriver showInformationalUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUInformationalUpdateAlertChoice choice) {
+        [self.userDriver showInformationalUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUserDriverUpdateInformationAction choice) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 switch (choice) {
-                    case SPUSkipThisInformationalVersionChoice:
+                    case SPUUserDriverUpdateInformationActionSkip:
                         [self.host setObject:[updateItem versionString] forUserDefaultsKey:SUSkippedVersionKey];
                         // Fall through
-                    case SPUDismissInformationalNoticeChoice:
+                    case SPUUserDriverUpdateInformationActionDismiss:
                         [self.delegate uiDriverIsRequestingAbortUpdateWithError:nil];
                         break;
                 }
             });
         }];
     } else if (self.resumingDownloadedUpdate) {
-        [self.userDriver showDownloadedUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUpdateAlertChoice choice) {
+        [self.userDriver showDownloadedUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUserDriverUpdatePendingAction choice) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.host setObject:nil forUserDefaultsKey:SUSkippedVersionKey];
                 switch (choice) {
-                    case SPUInstallUpdateChoice:
+                    case SPUUserDriverUpdatePendingActionInstall:
                         [self.coreDriver extractDownloadedUpdate];
                         break;
-                    case SPUSkipThisVersionChoice:
+                    case SPUUserDriverUpdatePendingActionSkip:
                         [self.coreDriver clearDownloadedUpdate];
                         [self.host setObject:[updateItem versionString] forUserDefaultsKey:SUSkippedVersionKey];
                         // Fall through
-                    case SPUInstallLaterChoice:
+                    case SPUUserDriverUpdatePendingActionRemindLater:
                         [self.delegate uiDriverIsRequestingAbortUpdateWithError:nil];
                         break;
                 }
             });
         }];
     } else if (!self.resumingInstallingUpdate) {
-        [self.userDriver showUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUpdateAlertChoice choice) {
+        [self.userDriver showUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUserDriverUpdatePendingAction choice) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.host setObject:nil forUserDefaultsKey:SUSkippedVersionKey];
                 switch (choice) {
-                    case SPUInstallUpdateChoice:
+                    case SPUUserDriverUpdatePendingActionInstall:
                         [self.coreDriver downloadUpdateFromAppcastItem:updateItem inBackground:NO];
                         break;
-                    case SPUSkipThisVersionChoice:
+                    case SPUUserDriverUpdatePendingActionSkip:
                         [self.host setObject:[updateItem versionString] forUserDefaultsKey:SUSkippedVersionKey];
                         // Fall through
-                    case SPUInstallLaterChoice:
+                    case SPUUserDriverUpdatePendingActionRemindLater:
                         [self.delegate uiDriverIsRequestingAbortUpdateWithError:nil];
                         break;
                 }
             });
         }];
     } else {
-        [self.userDriver showResumableUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUInstallUpdateStatus choice) {
+        [self.userDriver showResumableUpdateFoundWithAppcastItem:updateItem userInitiated:self.userInitiated reply:^(SPUUserDriverUpdateInstallationAction choice) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                SPUInstallUpdateStatus response = (
+                    (choice == SPUUserDriverUpdateInstallationActionInstallAndRelaunch ? SPUInstallAndRelaunchUpdateNow :
+                    (choice == SPUUserDriverUpdateInstallationActionInstallOnly ? SPUInstallUpdateNow :
+                    (choice == SPUUserDriverUpdateInstallationActionDismiss ? SPUDismissUpdateInstallation :
+                    (((NSUInteger (*)(void))abort)()))))
+                );
                 [self.host setObject:nil forUserDefaultsKey:SUSkippedVersionKey];
-                [self.coreDriver finishInstallationWithResponse:choice displayingUserInterface:!self.preventsInstallerInteraction];
+                [self.coreDriver finishInstallationWithResponse:response displayingUserInterface:!self.preventsInstallerInteraction];
             });
         }];
     }
@@ -182,20 +188,14 @@
 
 - (void)downloadDriverWillBeginDownload
 {
-    [self.userDriver showDownloadInitiatedWithCompletion:^(SPUDownloadUpdateStatus downloadCompletionStatus) {
-        switch (downloadCompletionStatus) {
-            case SPUDownloadUpdateDone:
-                break;
-            case SPUDownloadUpdateCanceled:
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([self.updaterDelegate respondsToSelector:@selector((userDidCancelDownload:))]) {
-                        [self.updaterDelegate userDidCancelDownload:self.updater];
-                    }
-                    
-                    [self.delegate uiDriverIsRequestingAbortUpdateWithError:nil];
-                });
-                break;
-        }
+    [self.userDriver showDownloadInitiatedWithCancelCallback:^ {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([self.updaterDelegate respondsToSelector:@selector((userDidCancelDownload:))]) {
+                [self.updaterDelegate userDidCancelDownload:self.updater];
+            }
+            
+            [self.delegate uiDriverIsRequestingAbortUpdateWithError:nil];
+        });
     }];
 }
 
@@ -221,15 +221,21 @@
 
 - (void)installerDidExtractUpdateWithProgress:(double)progress
 {
-    [self.userDriver showExtractionReceivedProgress:progress];
+    [self.userDriver showExtractionProgress:progress];
 }
 
 - (void)installerDidFinishPreparationAndWillInstallImmediately:(BOOL)willInstallImmediately silently:(BOOL)__unused willInstallSilently
 {
     if (!willInstallImmediately) {
-        [self.userDriver showReadyToInstallAndRelaunch:^(SPUInstallUpdateStatus installUpdateStatus) {
+        [self.userDriver showReadyToInstall:^(SPUUserDriverUpdateInstallationAction choice) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.coreDriver finishInstallationWithResponse:installUpdateStatus displayingUserInterface:!self.preventsInstallerInteraction];
+                SPUInstallUpdateStatus response = (
+                    (choice == SPUUserDriverUpdateInstallationActionInstallAndRelaunch ? SPUInstallAndRelaunchUpdateNow :
+                    (choice == SPUUserDriverUpdateInstallationActionInstallOnly ? SPUInstallUpdateNow :
+                    (choice == SPUUserDriverUpdateInstallationActionDismiss ? SPUDismissUpdateInstallation :
+                    (((NSUInteger (*)(void))abort)()))))
+                );
+                [self.coreDriver finishInstallationWithResponse:response displayingUserInterface:!self.preventsInstallerInteraction];
             });
         }];
     }

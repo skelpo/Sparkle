@@ -343,7 +343,7 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
     
     BOOL automaticallyCheckForUpdates = [self automaticallyChecksForUpdates];
     
-    [self.userDriver showCanCheckForUpdates:!automaticallyCheckForUpdates];
+    self.userDriver.userCanInitiateUpdateCheck = !automaticallyCheckForUpdates;
     
     if (!automaticallyCheckForUpdates) {
         if ([self.delegate respondsToSelector:@selector(updaterWillIdleSchedulingUpdates:)]) {
@@ -355,7 +355,7 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
     if (firingImmediately) {
         [self checkForUpdatesInBackground];
     } else {
-        [self.userDriver showCanCheckForUpdates:YES];
+        self.userDriver.userCanInitiateUpdateCheck = YES;
         
         [self retrieveNextUpdateCheckInterval:^(NSTimeInterval updateCheckInterval) {
             // This callback is asynchronous, so the timer may be set. Invalidate to make sure it isn't.
@@ -551,7 +551,7 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
             }
         };
         
-        [self.userDriver showCanCheckForUpdates:NO];
+        self.userDriver.userCanInitiateUpdateCheck = NO;
         
         if (installerInProgress) {
             [self.driver resumeInstallingUpdateWithCompletion:completionBlock];
@@ -711,7 +711,7 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
 }
 
 static NSString *escapeURLComponent(NSString *str) {
-    return [[[[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+    return [[[[str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]]
              stringByReplacingOccurrencesOfString:@"=" withString:@"%3d"]
              stringByReplacingOccurrencesOfString:@"&" withString:@"%26"]
              stringByReplacingOccurrencesOfString:@"+" withString:@"%2b"];

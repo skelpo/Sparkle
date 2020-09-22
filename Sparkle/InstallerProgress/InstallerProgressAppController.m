@@ -12,7 +12,6 @@
 #import "InstallerProgressDelegate.h"
 #import "SPUMessageTypes.h"
 #import "SULog.h"
-#import "SUApplicationInfo.h"
 #import "SPUInstallerAgentProtocol.h"
 #import "SUInstallerAgentInitiationProtocol.h"
 #import "StatusInfo.h"

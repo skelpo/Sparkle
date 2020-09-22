@@ -19,11 +19,14 @@ typedef NS_ENUM(uint8_t, SULogLevel) {
     SULogLevelError
 };
 
-// Logging utlity function that is thread-safe
+// Logging utility function that is thread-safe
 // On 10.12 or later this uses os_log
 // Otherwise on older systems this uses ASL
 // For debugging command line tools, you may have to use Console.app or log(1) to view log messages
 // Try to keep log messages as compact/short as possible
-void SULog(SULogLevel level, NSString *format, ...) NS_FORMAT_FUNCTION(2, 3);
+void SULog(SULogLevel level, NSString * _Nonnull format, ...) NS_FORMAT_FUNCTION(2, 3) NS_REFINED_FOR_SWIFT;
+
+// Logging utility function, equivalent to `SULog()` except that it takes a `va_list` instead of varargs.
+void SULogv(SULogLevel level, NSString * _Nonnull format, va_list args) NS_FORMAT_FUNCTION(2, 0);
 
 #endif

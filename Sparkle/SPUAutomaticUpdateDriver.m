@@ -12,7 +12,7 @@
 #import "SPUCoreBasedUpdateDriver.h"
 #import "SULog.h"
 #import "SUAppcastItem.h"
-#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
 #import <Sparkle/SUErrors.h>
 
 

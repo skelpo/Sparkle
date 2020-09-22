@@ -33,7 +33,17 @@ typedef struct os_log_s *os_log_t;
 #define STRINGIFY(x) #x
 #define TO_STRING(x) STRINGIFY(x)
 
-void SULog(SULogLevel level, NSString *format, ...)
+void SULogv(SULogLevel level, NSString * _Nonnull format, va_list args)
+{
+    // Normally one would put the real logging logic here and implement `SULog()` in terms of this function.
+    // But since `os_log()` has no `va_list` variant (and isn't likely to get one), and we already take the
+    // hit of separately formatting the input anyway, just shorthand by forwarding in the wrong direction.
+    NSString *logMessage = [[NSString alloc] initWithFormat:format arguments:args];
+
+    SULog(level, @"%@", logMessage);
+}
+
+void SULog(SULogLevel level, NSString * _Nonnull format, ...)
 {
     static aslclient client;
 #if __MAC_OS_X_VERSION_MIN_REQUIRED < 101200

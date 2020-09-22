@@ -19,15 +19,13 @@
 #import "SUFileManager.h"
 #import "SPUSecureCoding.h"
 #import "SPUInstallationInputData.h"
-#import "SUInstallerLauncher.h"
 #import "SUInstallerConnection.h"
 #import "SUInstallerConnectionProtocol.h"
 #import "SUXPCInstallerConnection.h"
 #import "SPUDownloadedUpdate.h"
 #import "SPUInstallationType.h"
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 #define FIRST_INSTALLER_MESSAGE_TIMEOUT 7ull
 
@@ -425,17 +423,17 @@
             [launcherConnection invalidate];
             
             switch (result) {
-                case SUInstallerLauncherFailure:
+                case SUInstallerLauncherStatusFailure:
                     SULog(SULogLevelError, @"Error: Failed to gain authorization required to update target");
                     completionHandler([NSError errorWithDomain:SUSparkleErrorDomain code:SUInstallationError userInfo:@{ NSLocalizedDescriptionKey:SULocalizedString(@"An error occurred while launching the installer. Please try again later.", nil) }]);
                     break;
-                case SUInstallerLauncherCanceled:
+                case SUInstallerLauncherStatusCanceled:
                     completionHandler([NSError errorWithDomain:SUSparkleErrorDomain code:SUInstallationCanceledError userInfo:nil]);
                     break;
-                case SUInstallerLauncherAuthorizeLater:
+                case SUInstallerLauncherStatusAuthorizeLater:
                     completionHandler([NSError errorWithDomain:SUSparkleErrorDomain code:SUInstallationAuthorizeLaterError userInfo:nil]);
                     break;
-                case SUInstallerLauncherSuccess:
+                case SUInstallerLauncherStatusSuccess:
                     [self setUpConnection];
                     completionHandler(nil);
                     break;

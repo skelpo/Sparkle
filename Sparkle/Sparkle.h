@@ -25,15 +25,23 @@
 #import <Sparkle/SUErrors.h>
 #import <Sparkle/SPUUpdatePermissionRequest.h>
 #import <Sparkle/SUUpdatePermissionResponse.h>
-#import <Sparkle/SPUUserDriver.h>
-#import <Sparkle/SPUStandardUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUStandardUserDriver.h>
 #import <Sparkle/SPUStandardUserDriverDelegate.h>
+#import <Sparkle/SPUStandardUserDriverProtocol.h>
 #import <Sparkle/SPUUserDriverCoreComponent.h>
 #import <Sparkle/SPUDownloadData.h>
 
 #import <Sparkle/SUUpdater.h> // deprecated
 #import <Sparkle/SUUpdaterDelegate.h> // deprecated
 
-#import <Sparkle/SUConstants.h> // For Swift support only
+// The following headers are imported here only for Swift support and should not be considered actually public:
+#import <Sparkle/SUConstants.h>
+#import <Sparkle/SULog.h>
+#import <Sparkle/SUFileManager.h>
+#import <Sparkle/SPUMessageTypes.h>
+#import <Sparkle/SPUSystemAuthorization.h>
+#import <Sparkle/SPULocalCacheDirectory.h>
+#import <Sparkle/SPUInstallationType.h>
 
 #endif

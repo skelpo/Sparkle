@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
 #import <Sparkle/SPUStandardUserDriverProtocol.h>
 #import <Sparkle/SUExport.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol SPUStandardUserDriverDelegate;
+@protocol SPUStandardUserDriverDelegate, SPUUserDriver;
 
 /*!
  Sparkle's standard built-in user driver for updater interactions

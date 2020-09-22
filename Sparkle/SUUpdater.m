@@ -9,7 +9,6 @@
 #import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import <Sparkle/SUUpdater.h>
 #import <Sparkle/SPUUpdater.h>
-#import <Sparkle/SPUStandardUserDriver.h>
 #import <Sparkle/SPUStandardUserDriverDelegate.h>
 #import <Sparkle/SPUUpdaterDelegate.h>
 #import "SULog.h"

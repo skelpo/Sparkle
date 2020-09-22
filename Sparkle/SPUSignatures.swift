@@ -24,7 +24,26 @@ import Foundation
     @objc public let dsaSignature: Data?
     @objc public let dsaSignatureStatus: SUSigningInputStatus
     
-    @objc public let ed25519Signature: [UInt8]?
+    /// A Swift view of the Ed25519 signature (if any) as an array of bytes.
+    @nonobjc public let ed25519Signature: [UInt8]?
+    
+    /// If an Ed25519 signature exists and has been requested from Objective-C at least once, this property tracks a
+    /// manually allocated buffer containing a copy of the data in `ed25519Signature`.
+    private var _cachedLegacyEd25519Signature: UnsafeMutableBufferPointer<UInt8>?
+    
+    /// A legacy, Objective-C compatible view of the Ed25519 signature, if any, as a pointer to memory assumed to
+    /// contain a specific number of bytes. This property is exposed to Objective-C callers as if it is the only view
+    /// available, even though it isn't.
+    @objc(ed25519Signature) public var _legacyEd25519Signature: UnsafePointer<UInt8>? {
+        if let signature = self.ed25519Signature, self._cachedLegacyEd25519Signature == nil {
+            signature.withUnsafeBufferPointer {
+                self._cachedLegacyEd25519Signature = .allocate(capacity: $0.count)
+                _ = self._cachedLegacyEd25519Signature!.initialize(from: $0)
+            }
+        }
+        return self._cachedLegacyEd25519Signature?.baseAddress.map { .init($0) }
+    }
+    
     @objc public let ed25519SignatureStatus: SUSigningInputStatus
     
     @objc public init(dsa: String?, ed: String?) {
@@ -40,6 +59,10 @@ import Foundation
         self.ed25519SignatureStatus = (ed == nil ? .absent : (self.ed25519Signature == nil ? .invalid : .present))
         
         super.init()
+    }
+    
+    deinit {
+        self._cachedLegacyEd25519Signature?.deallocate()
     }
     
     private enum NSCodingKeys: String {
@@ -85,7 +108,26 @@ import Foundation
     @objc public let dsaPubKey: String?
     @objc public var dsaPubKeyStatus: SUSigningInputStatus { self.dsaPubKey != nil ? .present : .absent }
 
-    @objc public let ed25519PubKey: [UInt8]?
+    /// A Swift view of the Ed25519 pubkey (if any) as an array of bytes.
+    @nonobjc public let ed25519PubKey: [UInt8]?
+    
+    /// If an Ed25519 pubkey exists and has been requested from Objective-C at least once, this property tracks a
+    /// manually allocated buffer containing a copy of the data in `ed25519PubKey`.
+    private var _cachedLegacyEd25519PubKey: UnsafeMutableBufferPointer<UInt8>?
+    
+    /// A legacy, Objective-C compatible view of the Ed25519 pubkey, if any, as a pointer to memory assumed to
+    /// contain a specific number of bytes. This property is exposed to Objective-C callers as if it is the only view
+    /// available, even though it isn't.
+    @objc(ed25519PubKey) public var _legacyEd25519PubKey: UnsafePointer<UInt8>? {
+        if let pubkey = self.ed25519PubKey, self._cachedLegacyEd25519PubKey == nil {
+            pubkey.withUnsafeBufferPointer {
+                self._cachedLegacyEd25519PubKey = .allocate(capacity: $0.count)
+                _ = self._cachedLegacyEd25519PubKey!.initialize(from: $0)
+            }
+        }
+        return self._cachedLegacyEd25519PubKey?.baseAddress.map { .init($0) }
+    }
+
     @objc public let ed25519PubKeyStatus: SUSigningInputStatus
     
     @objc public var hasAnyKeys: Bool { self.dsaPubKeyStatus != .absent || self.ed25519PubKeyStatus != .absent }
@@ -100,5 +142,9 @@ import Foundation
         }
         self.ed25519PubKeyStatus = (ed == nil ? .absent : (self.ed25519PubKey == nil ? .invalid : .present))
         super.init()
+    }
+
+    deinit {
+        self._cachedLegacyEd25519PubKey?.deallocate()
     }
 }

@@ -9,7 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "SUConstants.h"
 #import <Sparkle/SPUUpdater.h>
-#import <Sparkle/SPUStandardUserDriver.h>
 #import <Sparkle/SPUUpdaterDelegate.h>
 
 @interface SUUpdaterTest : XCTestCase <SPUUpdaterDelegate>

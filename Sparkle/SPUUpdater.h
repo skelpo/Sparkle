@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Sparkle/SUExport.h>
-#import <Sparkle/SPUUserDriver.h>
+//#import <Sparkle/SPUUserDriver.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class SUAppcastItem, SUAppcast;
 
-@protocol SPUUpdaterDelegate;
+@protocol SPUUpdaterDelegate, SPUUserDriver;
 
 /*!
     The main API in Sparkle for controlling the update mechanism.
