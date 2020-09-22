@@ -21,8 +21,7 @@
 #import "SULocalizations.h"
 #import "SPUInstallationType.h"
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface SPUCoreBasedUpdateDriver () <SPUBasicUpdateDriverDelegate, SPUDownloadDriverDelegate, SPUInstallerDriverDelegate>
 

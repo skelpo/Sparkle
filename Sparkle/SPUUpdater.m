@@ -30,8 +30,7 @@
 #import "SPUUpdaterTimer.h"
 #import "SPUResumableUpdate.h"
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 NSString *const SUUpdaterDidFinishLoadingAppCastNotification = @"SUUpdaterDidFinishLoadingAppCastNotification";
 NSString *const SUUpdaterDidFindValidUpdateNotification = @"SUUpdaterDidFindValidUpdateNotification";

@@ -10,7 +10,7 @@
 #import <Sparkle/SPUUpdaterSettings.h>
 #import "SUConstants.h"
 
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface SPUUpdaterSettings ()
 

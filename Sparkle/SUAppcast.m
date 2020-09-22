@@ -19,8 +19,7 @@
 #import "SPUURLDownload.h"
 #import <Sparkle/SPUDownloadData.h>
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface NSXMLElement (SUAppcastExtensions)
 @property (readonly, copy) NSDictionary *attributesAsDictionary;

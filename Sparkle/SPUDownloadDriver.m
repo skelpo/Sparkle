@@ -20,8 +20,7 @@
 #import "SPUDownloadedUpdate.h"
 #import <Sparkle/SPUDownloadData.h>
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface SPUDownloadDriver () <SPUDownloaderDelegate>
 

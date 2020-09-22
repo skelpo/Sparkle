@@ -18,8 +18,7 @@
 #import <Sparkle/SPUDownloadData.h>
 #import "SPUResumableUpdate.h"
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface SPUUIBasedUpdateDriver() <SPUCoreBasedUpdateDriverDelegate>
 

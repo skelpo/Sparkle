@@ -7,7 +7,6 @@
 //
 
 #import "SPUScheduledUpdateDriver.h"
-#import "SUHost.h"
 #import <Sparkle/SUErrors.h>
 #import "SPUUpdaterDelegate.h"
 #import <Sparkle/SPUUserDriver.h>

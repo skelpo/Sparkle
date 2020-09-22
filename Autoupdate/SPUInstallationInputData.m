@@ -10,7 +10,7 @@
 #import "SPUInstallationInputData.h"
 #import "SPUInstallationType.h"
 
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 static NSString *SURelaunchPathKey = @"SURelaunchPath";
 static NSString *SUHostBundlePathKey = @"SUHostBundlePath";

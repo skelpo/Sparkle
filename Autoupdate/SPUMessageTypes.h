@@ -10,8 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SUHost;
-
 extern NSString *SPUAppcastItemArchiveKey;
 
 // Order matters; higher stages have higher values.

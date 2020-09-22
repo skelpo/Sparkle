@@ -8,7 +8,6 @@
 
 #import "SPUAutomaticUpdateDriver.h"
 #import "SPUUpdateDriver.h"
-#import "SUHost.h"
 #import <Sparkle/SPUUpdaterDelegate.h>
 #import "SPUCoreBasedUpdateDriver.h"
 #import "SULog.h"

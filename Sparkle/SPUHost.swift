@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate extension Bundle {
+internal extension Bundle {
 
     var isMainBundle: Bool { self == Self.main }
 

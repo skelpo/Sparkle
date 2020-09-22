@@ -14,8 +14,7 @@
 #import <Sparkle/SPUDownloadData.h>
 #import <Sparkle/SUErrors.h>
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 typedef NS_ENUM(NSUInteger, SPUDownloadMode)
 {

@@ -13,8 +13,7 @@
 #import "SUConstants.h"
 #import "SPUInstallationType.h"
 
-
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 static NSString *SUAppcastItemDeltaUpdatesKey = @"deltaUpdates";
 static NSString *SUAppcastItemDisplayVersionStringKey = @"displayVersionString";

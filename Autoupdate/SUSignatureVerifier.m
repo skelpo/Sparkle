@@ -12,12 +12,11 @@
 //  Copyright 2011 Mark Hamlin. Licensed under BSD.
 //
 
+#import SWIFT_OBJC_INTERFACE_HEADER_IMPORT
 #import "SUSignatureVerifier.h"
 #import "SULog.h"
-#import "SUSignatures.h"
 #include <CommonCrypto/CommonDigest.h>
 #import "ed25519.h" // Run `git submodule update --init` if you get an error here
-
 
 #include "AppKitPrevention.h"
 

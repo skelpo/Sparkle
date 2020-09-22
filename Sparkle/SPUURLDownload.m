@@ -17,7 +17,7 @@
 #import <Sparkle/SUErrors.h>
 
 
-#include "AppKitPrevention.h"
+//#include "AppKitPrevention.h"
 
 @interface SPUTemporaryDownloaderDelegate : NSObject <SPUDownloaderDelegate>
 
